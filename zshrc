@@ -41,3 +41,6 @@ bindkey -M viins '' kill-whole-line
 # Enable backspace after returning from command mode.
 bindkey -M viins '' backward-delete-char
 bindkey -M viins '' backward-delete-char
+
+# Enable `git` tab-complete.
+autoload -Uz compinit && compinit
