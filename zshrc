@@ -6,6 +6,25 @@ function fzf_cmd() {
   fzf --multi "$@"
 }
 
+function load_nvmrc() {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
 # Select one or more commands from the shell's history.
 function zle_history() {
   local cmd=$(history 1                                                        \
@@ -111,11 +130,17 @@ bindkey -M viins '^F' zle_ls
 zle -N zle_ps
 bindkey -M viins '^G' zle_ps
 
+# Enable Zsh hooks.
+autoload -U add-zsh-hook
+
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
 
 # Enable `nvm` tab-complete.
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Must be called after `nvm` initialization.
+add-zsh-hook chpwd load_nvmrc
+load_nvmrc
 
 eval "$(direnv hook zsh)"
 eval "$(pyenv init -)"
