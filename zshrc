@@ -1,4 +1,22 @@
 #
+# FUNCTIONS
+#
+
+function fzf_cmd() {
+  fzf --multi "$@"
+}
+
+# Select one or more commands from the shell's history.
+function zle_history() {
+  local cmd=$(history 1                                                        \
+    | fzf_cmd --no-sort --scheme=history --tac                                 \
+    | awk '!($1="")' ORS=' &&'                                                 \
+    | sed 's|^ *||'                                                            \
+    | sed 's|&&$||')
+  [[ -n "$cmd" ]] && zle -U "$cmd"
+}
+
+#
 # COMMAND LINE PROMPT
 #
 
@@ -15,6 +33,26 @@ local dir='%B%F{cyan}%3~%f%b'
 PROMPT='${user}@${host}:${dir} $vcs_info_msg_0_
 %(?.%F{green}.%F{red})%#%f '
 RPROMPT=
+
+#
+# HISTORY
+#
+
+export HISTFILE="$HOME/.zsh_history"
+export HISTSIZE=10000
+export SAVEHIST=$HISTSIZE
+
+# see https://unix.stackexchange.com/a/273863
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
 #
 # LINE EDITOR
@@ -41,6 +79,10 @@ bindkey -M viins '' kill-whole-line
 # Enable backspace after returning from command mode.
 bindkey -M viins '' backward-delete-char
 bindkey -M viins '' backward-delete-char
+
+# Access command history.
+zle -N zle_history
+bindkey -M viins '^R' zle_history
 
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
