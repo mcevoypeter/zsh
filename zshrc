@@ -16,6 +16,17 @@ function zle_history() {
   [[ -n "$cmd" ]] && zle -U "$cmd"
 }
 
+# Select one or more file system entries relative to $HOME.
+function zle_ls() {
+  fzf_preview="[ -d {} ]                                                       \
+    && exa --all --long {}                                                     \
+    || bat --color=always --line-range=0:200 {} --style=numbers"
+  local entry=$(fd . / --hidden --no-ignore-vcs                                \
+    | fzf_cmd --preview="$fzf_preview" --scheme=path                           \
+    | awk 1 ORS=' ')
+  [[ -n "$entry" ]] && zle -U "$entry"
+}
+
 #
 # COMMAND LINE PROMPT
 #
@@ -83,6 +94,10 @@ bindkey -M viins '' backward-delete-char
 # Access command history.
 zle -N zle_history
 bindkey -M viins '^R' zle_history
+
+# Access files and directories.
+zle -N zle_ls
+bindkey -M viins '^F' zle_ls
 
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
