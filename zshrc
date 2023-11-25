@@ -114,6 +114,9 @@ bindkey -M viins '^G' zle_ps
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
 
+# Enable `nvm` tab-complete.
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 eval "$(direnv hook zsh)"
 eval "$(pyenv init -)"
 

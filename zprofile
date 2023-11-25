@@ -9,6 +9,11 @@ export GIT_COMMITTER_NAME="Peter McEvoy"
 export GNUPGHOME="$HOME/.gnupg/trezor"
 # Increase speed of key timeouts.
 export KEYTIMEOUT=1
+
+# from https://github.com/nvm-sh/nvm#git-install
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 export PYENV_ROOT="$HOME/.pyenv"
 # see https://forums.ankiweb.net/t/anki-doesnt-start-under-wayland-linux/10409
 export QT_QPA_PLATFORM=xcb
