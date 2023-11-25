@@ -114,5 +114,7 @@ bindkey -M viins '^G' zle_ps
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
 
+eval "$(direnv hook zsh)"
+
 # Must be run last.
 source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
