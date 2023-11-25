@@ -115,6 +115,7 @@ bindkey -M viins '^G' zle_ps
 autoload -Uz compinit && compinit
 
 eval "$(direnv hook zsh)"
+eval "$(pyenv init -)"
 
 # Must be run last.
 source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
