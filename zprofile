@@ -1,3 +1,4 @@
+export BAT_THEME="Monokai Extended"
 export EDITOR=$(which nvim)
 export FZF_DEFAULT_COMMAND="fd --hidden --no-ignore"
 export FZF_DEFAULT_OPTS="--cycle --keep-right --multi"
