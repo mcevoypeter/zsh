@@ -27,6 +27,14 @@ function zle_ls() {
   [[ -n "$entry" ]] && zle -U "$entry"
 }
 
+# Select one or more PIDs from procs.
+function zle_ps() {
+  local pid=$(procs                                                            \
+    | fzf_cmd --header-lines=2 --no-sort --tac                                 \
+    | awk '{print $1}' ORS=' ')
+  [[ -n "$pid" ]] && zle -U "$pid"
+}
+
 #
 # COMMAND LINE PROMPT
 #
@@ -98,6 +106,10 @@ bindkey -M viins '^R' zle_history
 # Access files and directories.
 zle -N zle_ls
 bindkey -M viins '^F' zle_ls
+
+# Access process table.
+zle -N zle_ps
+bindkey -M viins '^G' zle_ps
 
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
