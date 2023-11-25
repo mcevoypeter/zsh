@@ -15,3 +15,29 @@ local dir='%B%F{cyan}%3~%f%b'
 PROMPT='${user}@${host}:${dir} $vcs_info_msg_0_
 %(?.%F{green}.%F{red})%#%f '
 RPROMPT=
+
+#
+# LINE EDITOR
+#
+
+# Turn on vi mode.
+bindkey -v
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey -M viins '' edit-command-line
+bindkey -M vicmd '' edit-command-line
+
+# tab complete
+bindkey -M viins '\t' expand-or-complete
+
+# , ^E to move to beginning, end of line, respectively.
+bindkey -M viins '' beginning-of-line
+bindkey -M viins '' end-of-line
+
+# , ^U to delete word, line, respectively.
+bindkey -M viins '' backward-kill-word
+bindkey -M viins '' kill-whole-line
+
+# Enable backspace after returning from command mode.
+bindkey -M viins '' backward-delete-char
+bindkey -M viins '' backward-delete-char
