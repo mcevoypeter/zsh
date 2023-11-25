@@ -44,3 +44,6 @@ bindkey -M viins '' backward-delete-char
 
 # Enable `git` tab-complete.
 autoload -Uz compinit && compinit
+
+# Must be run last.
+source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
