@@ -7,6 +7,8 @@ export GIT_AUTHOR_NAME="Peter McEvoy"
 export GIT_COMMITTER_EMAIL="git@mcevoypeter.com"
 export GIT_COMMITTER_NAME="Peter McEvoy"
 export GNUPGHOME="$HOME/.gnupg/trezor"
+export GOBIN="$(go env GOBIN)"
+export GOPATH="$(go env GOPATH)"
 # Increase speed of key timeouts.
 export KEYTIMEOUT=1
 
