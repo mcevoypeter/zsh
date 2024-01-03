@@ -134,7 +134,7 @@ bindkey -M viins '^G' zle_ps
 autoload -U add-zsh-hook
 
 # Enable `git` tab-complete.
-autoload -Uz compinit && compinit
+autoload -Uz +X compinit && compinit
 
 # Enable `nvm` tab-complete.
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
