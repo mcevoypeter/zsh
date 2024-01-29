@@ -55,6 +55,12 @@ function zle_ps() {
 }
 
 #
+# ALIASES
+#
+
+alias ls="eza"
+
+#
 # COMMAND LINE PROMPT
 #
 
