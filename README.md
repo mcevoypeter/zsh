@@ -4,6 +4,7 @@
 
 Install the following tools:
 - [`bat`]
+- [`delta`]
 - [`eza`]
 - [`fd`]
 - [`fzf`]
@@ -22,6 +23,7 @@ ln -sf $(pwd)/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
 ```
 
 [`bat`]: https://github.com/sharkdp/bat
+[`delta`]: https://github.com/dandavison/delta
 [`eza`]: https://github.com/eza-community/eza
 [`fd`]: https://github.com/sharkdp/fd
 [`fzf`]: https://github.com/junegunn/fzf
