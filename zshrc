@@ -38,7 +38,7 @@ function zle_history() {
 # Select one or more file system entries relative to $HOME.
 function zle_ls() {
   fzf_preview="[ -d {} ]                                                       \
-    && exa --all --long {}                                                     \
+    && eza --all --long {}                                                     \
     || bat --color=always --line-range=0:200 {} --style=numbers"
   local entry=$(fd . / --hidden --no-ignore-vcs                                \
     | fzf_cmd --preview="$fzf_preview" --scheme=path                           \
