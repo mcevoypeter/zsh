@@ -40,7 +40,7 @@ function zle_ls() {
   fzf_preview="[ -d {} ]                                                       \
     && eza --all --long {}                                                     \
     || bat --color=always --line-range=0:200 {} --style=numbers"
-  local entry=$(fd . / --hidden --no-ignore-vcs                                \
+  local entry=$(fd . . --hidden --no-ignore-vcs                                \
     | fzf_cmd --preview="$fzf_preview" --scheme=path                           \
     | awk 1 ORS=' ')
   [[ -n "$entry" ]] && zle -U "$entry"
