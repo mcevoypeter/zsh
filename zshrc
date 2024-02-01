@@ -25,6 +25,15 @@ function load_nvmrc() {
   fi
 }
 
+# Select a Git branch.
+function zle_git_branch() {
+  local branch=$(git branch                                                    \
+    | tr -d '*'                                                                \
+    | awk '{ print $1 }'                                                       \
+    | fzf_cmd)
+  [[ -n "$branch" ]] && zle -U "$branch"
+}
+
 # Select one or more commands from the shell's history.
 function zle_history() {
   local cmd=$(history 1                                                        \
@@ -123,6 +132,10 @@ bindkey -M viins '' kill-whole-line
 # Enable backspace after returning from command mode.
 bindkey -M viins '' backward-delete-char
 bindkey -M viins '' backward-delete-char
+
+# Access Git branches.
+zle -N zle_git_branch
+bindkey -M viins '^B' zle_git_branch
 
 # Access command history.
 zle -N zle_history
