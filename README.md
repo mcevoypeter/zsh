@@ -12,6 +12,7 @@ Install the following tools:
 - [`node`]
 - [`nvm`]
 - [`pyenv`]
+- [`starship`]
 
 ```console
 git clone --recurse-submodules https://github.com/mcevoypeter/zsh.git path/to/installation
@@ -31,4 +32,5 @@ ln -sf $(pwd)/zsh-syntax-highlighting ~/.zsh-syntax-highlighting
 [`node`]: https://github.com/nodejs/node
 [`nvm`]: https://github.com/nvm-sh/nvm
 [`pyenv`]: https://github.com/pyenv/pyenv
+[`starship`]: https://github.com/starship/starship
 [Zsh]: https://zsh.sourceforge.io/
