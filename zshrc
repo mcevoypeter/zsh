@@ -67,6 +67,31 @@ function zle_ps() {
 # ALIASES
 #
 
+alias gad="git add"
+alias gap="git apply"
+alias gbi="git bisect"
+alias gch="git checkout"
+alias gce="git clean"
+alias gcm="git commit"
+alias gcn="git clone"
+alias gdi="git diff"
+alias gfe="git fetch"
+alias gin="git init"
+alias glo="git log"
+alias gme="git merge"
+alias gps="git push"
+alias gpl="git pull"
+alias grb="git rebase"
+alias gre="git revert"
+alias grp="git rev-parse"
+alias grm="git rm"
+alias grs="git reset"
+alias grt="git restore"
+alias gsh="git show"
+alias gss="git stash"
+alias gst="git status"
+alias gsw="git switch"
+alias gta="git tag"
 alias ls="eza"
 
 #
